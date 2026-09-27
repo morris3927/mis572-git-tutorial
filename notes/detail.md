@@ -8,7 +8,7 @@
 - **形式**：實體教室 + Zoom 同步，螢幕分享與投影片
 - **對象**：資管系大三、碩一、碩二，少數外系同學
 - **示範方式**：投影片講概念；操作一律在 VS Code 的 terminal 下指令，旁邊開 Git Graph 看變化
-- **課堂範例**：單頁 HTML 網頁 + GitHub Pages（repo：`mis572-test`），push 之後網站自動更新
+- **課堂範例**：單頁 HTML 網頁 + GitHub Pages（本 repo 根目錄的 `index.html`），push 之後網站自動更新
 - **課前**：上課前一天把投影片與範例上傳到課程網站，讓學生上課時下載
 - **學習目標**
   1. 知道版本控制在解決什麼問題，以及 Git 的由來
@@ -149,9 +149,10 @@ git config --list                                  # 檢查設定
 ## 3. 建立 Repo 與基本操作
 
 ### 3.1 課堂範例介紹
-- 範例：repo `mis572-test`，裡面一個單頁的 `index.html`（例如簡單的自我介紹頁或課程頁）
+- 範例：就是本 repo `mis572-git-tutorial` 根目錄的 `index.html`，一個很陽春的課程頁（標題加幾個 row / col 區塊），上課時直接修改它
+- 直接在 main 上示範，最後幾個 commit 就是課堂上對 `index.html` 的修改
 - 放在 GitHub 上，開啟 **GitHub Pages**：repo 的 Settings → Pages → Source 選 `Deploy from a branch`，branch 選 `main`、資料夾選 `/ (root)`
-- 網址：`https://<帳號>.github.io/mis572-test/`
+- 網址：`https://morris3927.github.io/mis572-git-tutorial/`
 - 先展示網站，讓大家知道等一下每次 push 後，網站大約一分鐘內就會更新
 - 注意：免費帳號的 GitHub Pages 需要 **public repo**
 
@@ -226,13 +227,13 @@ git config --list                                  # 檢查設定
 | `git pull` | 抓遠端更新 | Sync Changes / Pull |
 
 **示範流程（課堂範例網頁）：**
-1. 修改 `index.html` 的標題 → `git status` 看到 M
+1. 修改 `index.html` 的標題文字 → `git status` 看到 M
 2. `git diff` 看改了哪一行，同時在 VS Code 點檔案看左右對照
-3. 新增 `style.css` → `git status` 看到 U
-4. `git add .` → `git status` 看兩個檔案都進了 staging
-5. `git commit -m "Update title and add stylesheet"` → Git Graph 多一個節點，`main` 超前 `origin/main`
+3. 把 `#row1` 的 `background` 從 `transparent` 改成 `lightblue` → 同一個檔案多了一處改動
+4. `git add index.html` → `git status` 看到檔案進了 staging
+5. `git commit -m "Update title and row1 background"` → Git Graph 多一個節點，`main` 超前 `origin/main`
 6. `git push` → `origin/main` 跟上 → 打開網站，等一分鐘後重新整理看到更新
-7. 再改一次，這次全部用 VS Code 的按鈕完成，讓大家看到 GUI 跟 CLI 做的是同一件事
+7. 改 `#row2` 的背景色，這次全部用 VS Code 的按鈕完成，讓大家看到 GUI 跟 CLI 做的是同一件事
 
 **好的 commit message：**
 - 說明「做了什麼、為什麼」，第一行簡短（50 字元內）
@@ -362,14 +363,14 @@ git merge feature/footer
 
 ### 5.3 Merge conflict
 - 發生原因：兩個 branch **改到同一個檔案的同一個地方**，Git 不知道要用哪個版本
-- 示範：main 和 `feature/title` 都改了網頁標題 → merge → 出現 conflict
+- 示範：main 和 `feature/row1-color` 都改了 `#row1` 的背景色（一個 `lightblue`、一個 `lightpink`）→ merge → 出現 conflict
 - conflict 標記：
   ```
   <<<<<<< HEAD
-  <h1>MIS572 課程網站</h1>
+    background: lightblue;
   =======
-  <h1>Git 教學範例</h1>
-  >>>>>>> feature/title
+    background: lightpink;
+  >>>>>>> feature/row1-color
   ```
 - 解決步驟：
   1. `git status` 看哪些檔案有衝突
@@ -605,7 +606,8 @@ npm install -g @openai/codex
 
 ### 助教自己準備
 - [ ] 投影片
-- [ ] 課堂範例 repo `mis572-test`（public）+ 開好 GitHub Pages，確認網址能開
+- [ ] 本 repo 開好 GitHub Pages（Settings → Pages → main / root），確認網址能開
+- [ ] 預演前記下當時的 commit hash，預演完用 `git reset --hard <hash>` + `git push --force` 回到乾淨狀態
 - [ ] 預先準備好會衝突的 branch，以及要用來 revert 的「改壞」commit
 - [ ] Codex 先安裝、登入，完整跑過一次 7.7 的流程
 - [ ] VS Code 版面：編輯器、terminal、Git Graph 同時可見
@@ -623,5 +625,4 @@ npm install -g @openai/codex
 ---
 
 ## 待確認事項
-- [ ] 課堂範例網頁的內容
 - [ ] 投影片由誰製作
