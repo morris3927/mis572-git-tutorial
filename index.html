@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIS572 助教課</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 16px;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: #ffffff;
+      color: #222222;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      margin: 0 0 32px;
+      color: #666666;
+    }
+
+    .row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .col {
+      flex: 1;
+      padding: 24px;
+      border: 1px solid #dddddd;
+      border-radius: 8px;
+      background: #f7f7f7;
+    }
+
+    /* 用 # 選取 id，上課時改這裡的 background 示範 */
+    #row1 {
+      padding: 16px;
+      border-radius: 8px;
+      background: transparent;
+    }
+
+    #row2 {
+      padding: 16px;
+      border-radius: 8px;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MIS572 助教課</h1>
+    <p class="subtitle">Git 與 Coding Agent</p>
+
+    <div class="row" id="row1">
+      <div class="col">Row 1 · Col 1</div>
+      <div class="col">Row 1 · Col 2</div>
+      <div class="col">Row 1 · Col 3</div>
+    </div>
+
+    <div class="row" id="row2">
+      <div class="col">Row 2 · Col 1</div>
+      <div class="col">Row 2 · Col 2</div>
+    </div>
+  </div>
+</body>
+</html>
